@@ -9,3 +9,5 @@ Lihat [demo](https://strbagus.github.io/selamat-ultah) versi sebelumnya
 
 ### Tech
 - [Vue3](https://vuejs.org/)
+### Package
+- [QRCode](https://github.com/papnkukn/qrcode-svg)
