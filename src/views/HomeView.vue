@@ -23,7 +23,6 @@ export default {
       var svg = qrcode.svg()
       document.getElementById("qrcode").innerHTML = svg
       document.getElementById("modal-qr").style.visibility = 'visible'
-      console.log(this.getLink())
     },
     getLink() {
       let titleRaw = this.form.title

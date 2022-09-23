@@ -15,16 +15,15 @@ export default {
     this.title = title
     this.msg = message
     document.body.style.background = '#'+bg
-    console.log(title + message + bg)
   },
 }
 </script>
 <template>
   <div class="about px-2">
-    <div class="messages bg-white rounded shadow-lg md:w-1/3 w-full pad py-7 px-5">
-      <h1 class="text-3xl text-gray-800">{{ title }}</h1>
+    <div class="messages bg-white rounded shadow-lg md:w-1/3 pad py-7 px-5">
+      <h1 class="text-2xl text-gray-800">{{ title }}</h1>
       <hr>
-      <p class="text-xl text-gray-700 pt-5">{{ msg }}</p>
+      <p class="text-md text-gray-700 pt-5">{{ msg }}</p>
     </div>
   </div>
 </template>
@@ -34,6 +33,7 @@ export default {
   }
   .messages{
     position: absolute;
+    width: 95%;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
