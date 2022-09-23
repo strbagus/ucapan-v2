@@ -52,34 +52,35 @@ export default {
     <div>
       <div class="form absolute px-5">
         <h1 class="text-2xl text-yellow-500 mt-7">Preview</h1>
-        <div id="preview" class="m-1 px-5 pt-7 rounded">
-          <div class="message rounded shadow-md pt-3 px-2 bg-white">
+        <div id="preview" class="m-1 px-5 py-7 rounded flex justify-center">
+          <div class="message rounded shadow-md pt-3 md:w-1/3 px-2 bg-white">
             <div v-if="form.title!=null">
-              <h1 class="text-2xl text-gray-700">{{ form.title }}</h1>
+              <h1 class="text-xl text-gray-700">{{ form.title }}</h1>
               <hr>
             </div>
             <p class="text-md text-gray-700 pb-6 pt-4">
               {{ form.msg }}<br/>
             </p>
           </div>
-          <p class="text-end py-2">{{ form.background }}</p>
         </div>
-        <div class="box-input md:w-1/2 py-7">
-          <h1 class="text-red-500 text-2xl">Form Input</h1>
-          <div class="flex flex-col">
-            <label for="title" class="text-blue-500">title</label>
-            <input type="text" class="form-input text-gray-700 rounded p-1" v-model="form.title" />
-          </div>
-          <div class="flex flex-col">
-            <label for="msg" class="text-green-500">Message</label> 
-            <textarea type="text" class="form-input text-gray-700 rounded" v-model="form.msg" required/>
-          </div>
-          <div class="flex flex-col">
-            <label for="title" class="text-purple-500">Background Color</label>
-            <input type="color" class="form-input text-gray-700 rounded p-1" v-model="form.background" />
-          </div>
-          <div class="flex justify-end my-3 mx-5">
-            <button class="bg-blue-600 rounded px-3 py-1 text-white" @click="saveBtn" :disabled="form.msg==null">Selesai</button>
+        <div class="flex justify-center">
+          <div class="box-input md:w-1/2 py-7 border border-white px-5 rounded-xl mt-5">
+            <h1 class="text-red-500 text-2xl">Form Input</h1>
+            <div class="flex flex-col">
+              <label for="title" class="text-blue-500">title</label>
+              <input type="text" class="form-input text-gray-700 rounded p-1" v-model="form.title" />
+            </div>
+            <div class="flex flex-col">
+              <label for="msg" class="text-green-500">Message</label> 
+              <textarea type="text" class="form-input text-gray-700 rounded" v-model="form.msg" required/>
+            </div>
+            <div class="flex flex-col">
+              <label for="title" class="text-purple-500">Background Color</label>
+              <input type="color" class="form-input text-gray-700 rounded p-1" v-model="form.background" />
+            </div>
+            <div class="flex justify-end my-3 mx-5">
+              <button class="bg-blue-600 rounded px-3 py-1 text-white" @click="saveBtn" :disabled="form.msg==null">Selesai</button>
+            </div>
           </div>
         </div>
       </div>
