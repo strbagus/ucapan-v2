@@ -67,19 +67,19 @@ export default {
         <div class="box-input md:w-1/2 py-7">
           <h1 class="text-red-500 text-2xl">Form Input</h1>
           <div class="flex flex-col">
-            <label for="title">title</label>
+            <label for="title" class="text-blue-500">title</label>
             <input type="text" class="form-input text-gray-700 rounded p-1" v-model="form.title" />
           </div>
           <div class="flex flex-col">
-            <label for="msg">Message</label> 
+            <label for="msg" class="text-green-500">Message</label> 
             <textarea type="text" class="form-input text-gray-700 rounded" v-model="form.msg" required/>
           </div>
           <div class="flex flex-col">
-            <label for="title">Background Color</label>
+            <label for="title" class="text-purple-500">Background Color</label>
             <input type="color" class="form-input text-gray-700 rounded p-1" v-model="form.background" />
           </div>
           <div class="flex justify-end my-3 mx-5">
-            <button class="bg-blue-600 rounded px-3 py-1 text-white" @click="saveBtn" :disabled="form.msg==null">Simpan</button>
+            <button class="bg-blue-600 rounded px-3 py-1 text-white" @click="saveBtn" :disabled="form.msg==null">Selesai</button>
           </div>
         </div>
       </div>
