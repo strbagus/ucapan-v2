@@ -53,7 +53,7 @@ export default {
       <div class="form absolute px-5">
         <h1 class="text-2xl text-yellow-500 mt-7">Preview</h1>
         <div id="preview" class="m-1 px-5 py-7 rounded flex justify-center">
-          <div class="message rounded shadow-md pt-3 md:w-1/3 px-2 bg-white">
+          <div class="message rounded shadow-md pt-3 w-full md:w-1/3 px-5 bg-white">
             <div v-if="form.title!=null">
               <h1 class="text-xl text-gray-700">{{ form.title }}</h1>
               <hr>
@@ -64,15 +64,15 @@ export default {
           </div>
         </div>
         <div class="flex justify-center">
-          <div class="box-input md:w-1/2 py-7 border border-white px-5 rounded-xl mt-5">
+          <div class="box-input w-full md:w-1/3 py-7 border border-white px-5 rounded-xl mt-5">
             <h1 class="text-red-500 text-2xl">Form Input</h1>
             <div class="flex flex-col">
               <label for="title" class="text-blue-500">title</label>
-              <input type="text" class="form-input text-gray-700 rounded p-1" v-model="form.title" />
+              <input type="text" class="form-input text-gray-700 rounded py-1 px-2" v-model="form.title" />
             </div>
             <div class="flex flex-col">
               <label for="msg" class="text-green-500">Message</label> 
-              <textarea type="text" class="form-input text-gray-700 rounded" v-model="form.msg" required/>
+              <textarea type="text" class="form-input text-gray-700 rounded py-1 px-2" rows="5" v-model="form.msg" required/>
             </div>
             <div class="flex flex-col">
               <label for="title" class="text-purple-500">Background Color</label>
