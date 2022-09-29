@@ -34,7 +34,7 @@ export default {
       return import.meta.env.VITE_BASE_URL+'message?title='+title+'&msg='+msg+'&bg='+bg
     },
     backgroundColor(value){
-      this.form.background = value
+    document.getElementById("preview").style.background = value
     },
     redirectHome(){
       document.getElementById("modal-qr").style.visibility = 'hidden'
@@ -44,9 +44,6 @@ export default {
   watch: {
     'form.background': function (newVal) {
       this.backgroundColor(newVal)
-    },
-    'form.background2': function (newVal) {
-      this.background2Color(newVal)
     },
   },
 }
