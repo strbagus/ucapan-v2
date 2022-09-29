@@ -160,9 +160,13 @@ export default {
     }
     50% {
       margin-top: -250px;
-      z-index: 30;
       min-height: 190px;
       box-shadow: 0 0 5px 1px rgba(158, 158, 158, 0.5);
+    }
+    75% {
+      min-height: 195px;
+      box-shadow: 0 0 7px 1px rgba(158, 158, 158, 0.5);
+      z-index: 30;
     }
     100% {
       min-height: 205px;

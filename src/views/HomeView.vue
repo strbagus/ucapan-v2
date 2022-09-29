@@ -60,14 +60,14 @@ export default {
                 <input type="text" 
                   class="text-xl text-gray-700 w-full focus:outline-none" 
                   placeholder="e.g. For My Dearest Friend..." 
-                  v-model="form.title">
+                  v-model="form.title" maxlength="30">
                 <hr>
               </div>
               <p class="text-md text-gray-700 pb-6 pt-4">
                 <textarea name="text" wrap="soft" rows="5"
                   class="w-full focus:outline-none h-" 
                   placeholder="e.g. Hi my friend.. we've lot time together, i now i decide to gift some words just for you..."
-                  v-model="form.msg"></textarea>
+                  v-model="form.msg" maxlength="250"></textarea>
               </p>
             </div>
           </div>
