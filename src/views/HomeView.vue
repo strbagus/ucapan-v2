@@ -6,12 +6,12 @@ export default {
       form: ({
         title: null,
         msg: null,
-        background: '#0000ff',
+        background: '#0f0f70',
       }),
     }
   },
   mounted() {
-    document.getElementById("preview").style.background = this.form.background  
+    document.getElementById("preview").style.background = this.form.background
   },
   methods: {
     saveBtn() {
@@ -34,15 +34,19 @@ export default {
       return import.meta.env.VITE_BASE_URL+'message?title='+title+'&msg='+msg+'&bg='+bg
     },
     backgroundColor(value){
-      document.getElementById("preview").style.background = value
+      this.form.background = value
     },
     redirectHome(){
       document.getElementById("modal-qr").style.visibility = 'hidden'
-    }
+    },
+
   },
   watch: {
     'form.background': function (newVal) {
       this.backgroundColor(newVal)
+    },
+    'form.background2': function (newVal) {
+      this.background2Color(newVal)
     },
   },
 }
@@ -52,46 +56,40 @@ export default {
     <div>
       <div class="form absolute px-5">
         <h1 class="text-2xl text-yellow-500 mt-7">Preview</h1>
-        <div id="preview" class="m-1 px-5 py-7 rounded flex justify-center">
-          <div class="message rounded shadow-md pt-3 w-full md:w-1/3 px-5 bg-white">
-            <div v-if="form.title!=null">
-              <h1 class="text-xl text-gray-700">{{ form.title }}</h1>
-              <hr>
+        <div id="preview" class="m-1 px-5 py-7 rounded">
+          <div class="flex justify-center">
+            <div class="message rounded shadow-md pt-3 w-full md:w-1/3 px-5 bg-white">
+              <div>
+                <input type="text" 
+                  class="text-xl text-gray-700 w-full focus:outline-none" 
+                  placeholder="e.g. For My Dearest Friend..." 
+                  v-model="form.title">
+                <hr>
+              </div>
+              <p class="text-md text-gray-700 pb-6 pt-4">
+                <textarea name="text" wrap="soft" rows="5"
+                  class="w-full focus:outline-none h-" 
+                  placeholder="e.g. Hi my friend.. we've lot time together, i now i decide to gift some words just for you..."
+                  v-model="form.msg"></textarea>
+              </p>
             </div>
-            <p class="text-md text-gray-700 pb-6 pt-4">
-              {{ form.msg }}<br/>
-            </p>
+          </div>
+          <div class="flex justify-end">
+            <input type="color" class="form-input text-gray-700 rounded m-1" v-model="form.background" />
           </div>
         </div>
-        <div class="flex justify-center">
-          <div class="box-input w-full md:w-1/3 py-7 border border-white px-5 rounded-xl mt-5">
-            <h1 class="text-red-500 text-2xl">Form Input</h1>
-            <div class="flex flex-col">
-              <label for="title" class="text-blue-500">title</label>
-              <input type="text" class="form-input text-gray-700 rounded py-1 px-2" v-model="form.title" />
-            </div>
-            <div class="flex flex-col">
-              <label for="msg" class="text-green-500">Message</label> 
-              <textarea type="text" class="form-input text-gray-700 rounded py-1 px-2" rows="5" v-model="form.msg" required/>
-            </div>
-            <div class="flex flex-col">
-              <label for="title" class="text-purple-500">Background Color</label>
-              <input type="color" class="form-input text-gray-700 rounded p-1" v-model="form.background" />
-            </div>
-            <div class="flex justify-end my-3 mx-5">
-              <button class="bg-blue-600 rounded px-3 py-1 text-white" @click="saveBtn" :disabled="form.msg==null">Selesai</button>
-            </div>
-          </div>
+        <div class="flex justify-center my-3 mx-5">
+          <button class="bg-blue-600 rounded px-3 py-1 text-white" @click="saveBtn" :disabled="form.msg==null || form.title==null">Done</button>
         </div>
       </div>
       <div id="modal-qr" class="absolute p-5">
         <div class="qr-box bg-red-500">
           <div id="qrcode" class=""></div>
           <p class="text-center my-5 italic">
-            maaf programmer nya cupu gabisa convert ext .svg ke .jpg/.png jadi screenshot dulu ya
+            For now, you need to screenshot this qrcode and send it to whoever you want
           </p>
           <div class="flex justify-center">
-            <button class="bg-blue-600 rounded px-3 py-1 text-white" @click="redirectHome()">Selesai</button>
+            <button class="bg-blue-600 rounded px-3 py-1 text-white" @click="redirectHome()">Back</button>
           </div>
         </div>
       </div>
