@@ -1,11 +1,9 @@
-# Selamat Ulang Tahun
+# Ucapan selamat
 ---
-#### Ini adalah fun project versi upgrade dari [selamat-ultah](https://github.com/strbagus/selamat-ultah)
-jika di versi sebelumnya meruapakan web status, di versi ini sudah dinamis dengan mengandalkan parameter dari URL.
+#### Ini terinspirasi dari [selamat-ultah](https://github.com/strbagus/selamat-ultah) 
+jika di [selamat-ultah](https://github.com/strbagus/selamat-ultah) meruapakan web statis, di project ini sudah dinamis dengan mengandalkan parameter dari URL.
 
-<!-- Lihat [demo](https://) -->
-
-Lihat [demo](https://strbagus.github.io/selamat-ultah) versi sebelumnya
+Lihat [demo](https://greetings.strbagus.my.id/)
 
 ### Tech
 - [Vue3](https://vuejs.org/)
