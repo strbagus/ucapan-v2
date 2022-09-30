@@ -1,6 +1,6 @@
 {
-  "name": "ultah",
-  "version": "0.0.1",
+  "name": "greetings",
+  "version": "1.0.0",
   "scripts": {
     "dev": "vite",
     "build": "vite build",

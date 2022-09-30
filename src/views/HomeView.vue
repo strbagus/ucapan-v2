@@ -1,17 +1,22 @@
 <script>
 import QRCode from 'qrcode-svg'
+import { RouterLink } from  'vue-router'
 export default {
+  components: {
+    RouterLink,
+  },
   data() {
     return {
       form: ({
         title: null,
         msg: null,
-        background: '#0f0f70',
+        background: '#d7b719',
       }),
     }
   },
   mounted() {
     document.getElementById("preview").style.background = this.form.background
+    document.body.style.background = '#000'
   },
   methods: {
     saveBtn() {
@@ -32,6 +37,13 @@ export default {
       let title = encodeURI(titleRaw)
       let msg = encodeURI(msgRaw)
       return import.meta.env.VITE_BASE_URL+'message?title='+title+'&msg='+msg+'&bg='+bg
+    },
+    getLinkPreview() {
+      let title = this.form.title
+      let msg = this.form.msg
+      let bgRaw = this.form.background
+      let bg = bgRaw.replace('#', '')
+      return '/message?title='+title+'&msg='+msg+'&bg='+bg
     },
     backgroundColor(value){
     document.getElementById("preview").style.background = value
@@ -76,17 +88,18 @@ export default {
           </div>
         </div>
         <div class="flex justify-center my-3 mx-5">
-          <button class="bg-blue-600 rounded px-3 py-1 text-white" @click="saveBtn" :disabled="form.msg==null || form.title==null">Done</button>
+          <button class="bg-yellow-500 rounded px-3 py-1 text-white disabled:bg-yellow-600 disabled:text-gray-500" @click="saveBtn" :disabled="form.msg==null || form.title==null">Done</button>
         </div>
       </div>
       <div id="modal-qr" class="absolute p-5">
         <div class="qr-box bg-red-500">
           <div id="qrcode" class=""></div>
           <p class="text-center my-5 italic">
-            For now, you need to screenshot this qrcode and send it to whoever you want
+            Screenshot this QRCode and send to whoever you want
           </p>
-          <div class="flex justify-center">
-            <button class="bg-blue-600 rounded px-3 py-1 text-white" @click="redirectHome()">Back</button>
+          <div class="flex justify-evenly">
+            <router-link :to="getLinkPreview()" class="bg-yellow-500 rounded px-3 py-1 text-white">View</router-link>
+            <button class="bg-yellow-500 rounded px-3 py-1 text-white" @click="redirectHome()">Back</button>
           </div>
         </div>
       </div>

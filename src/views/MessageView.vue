@@ -18,7 +18,6 @@ export default {
   },
   methods: {
     openEnvelope(){
-      // document.getElementById('envelope').style.marginTop = '150px'
       document.querySelector('.envelope').style.webkitAnimationPlayState = 'running'
       document.querySelector('.paper').style.webkitAnimationPlayState = 'running'
       document.querySelector('.top').style.webkitAnimationPlayState = 'running'
@@ -160,11 +159,11 @@ export default {
     }
     50% {
       margin-top: -250px;
-      min-height: 190px;
+      min-height: 195px;
       box-shadow: 0 0 5px 1px rgba(158, 158, 158, 0.5);
     }
     75% {
-      min-height: 195px;
+      min-height: 200px;
       box-shadow: 0 0 7px 1px rgba(158, 158, 158, 0.5);
       z-index: 30;
     }
