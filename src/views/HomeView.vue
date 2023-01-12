@@ -1,9 +1,11 @@
 <script>
 import QRCode from 'qrcode-svg'
 import { RouterLink } from  'vue-router'
+import CopyVersion from '@/components/CopyVersion.vue'
 export default {
   components: {
     RouterLink,
+    CopyVersion,
   },
   data() {
     return {
@@ -68,54 +70,51 @@ export default {
 }
 </script>
 <template>
-  <main>
-    <div>
-      <div class="form absolute px-5">
-        <h1 class="text-2xl text-yellow-500 mt-7">Preview</h1>
-        <div id="preview" class="m-1 px-5 py-7 rounded">
-          <div class="flex justify-center">
-            <div class="message rounded shadow-md pt-3 w-full md:w-1/3 px-5 bg-white">
-              <div>
-                <input type="text" 
-                  class="text-xl text-gray-700 w-full focus:outline-none" 
-                  placeholder="e.g. For My Dearest Friend..." 
-                  v-model="form.title" maxlength="30">
-                <hr>
-              </div>
-              <p class="text-md text-gray-700 pb-6 pt-4">
-                <textarea name="text" wrap="soft" rows="6"
-                  class="w-full focus:outline-none h-" 
-                  placeholder="e.g. Hi my friend.. we've lot time together, i now i decide to gift some words just for you..."
-                  v-model="form.msg" maxlength="250"></textarea>
-              </p>
-              <div class="text-gray-600 mb-2 text-end">
-                {{ counterMsg() }}
-                <span>/ 250</span>
-              </div>
-            </div>
+  <div class="form absolute px-5">
+    <h1 class="text-2xl text-yellow-500 mt-7">Preview</h1>
+    <div id="preview" class="m-1 px-5 py-7 rounded">
+      <div class="flex justify-center">
+        <div class="message rounded shadow-md pt-3 w-full md:w-1/3 px-5 bg-white">
+          <div>
+            <input type="text" 
+              class="text-xl text-gray-700 w-full focus:outline-none" 
+              placeholder="e.g. For My Dearest Friend..." 
+              v-model="form.title" maxlength="30">
+            <hr>
           </div>
-          <div class="flex justify-end">
-            <input type="color" class="form-input text-gray-700 rounded m-1" v-model="form.background" />
+          <p class="text-md text-gray-700 pb-6 pt-4">
+            <textarea name="text" wrap="soft" rows="6"
+              class="w-full focus:outline-none h-" 
+              placeholder="e.g. Hi my friend.. we've lot time together, i now i decide to gift some words just for you..."
+              v-model="form.msg" maxlength="250"></textarea>
+          </p>
+          <div class="text-gray-600 mb-2 text-end">
+            {{ counterMsg() }}
+            <span>/ 250</span>
           </div>
-        </div>
-        <div class="flex justify-center my-3 mx-5">
-          <button class="bg-yellow-500 rounded px-3 py-1 text-white disabled:bg-yellow-600 disabled:text-gray-500" @click="saveBtn" :disabled="form.msg==null || form.title==null">Done</button>
         </div>
       </div>
-      <div id="modal-qr" class="absolute p-5">
-        <div class="qr-box bg-red-500">
-          <div id="qrcode" class=""></div>
-          <p class="text-center my-5 italic">
-            Screenshot this QRCode and send to whoever you want
-          </p>
-          <div class="flex justify-evenly">
-            <router-link :to="getLinkPreview()" class="bg-yellow-500 rounded px-3 py-1 text-white">View</router-link>
-            <button class="bg-yellow-500 rounded px-3 py-1 text-white" @click="redirectHome()">Back</button>
-          </div>
-        </div>
+      <div class="flex justify-end">
+        <input type="color" class="form-input text-gray-700 rounded m-1" v-model="form.background" />
       </div>
     </div>
-  </main>
+    <div class="flex justify-center my-3 mx-5">
+      <button class="bg-yellow-500 rounded px-3 py-1 text-white disabled:bg-yellow-600 disabled:text-gray-500" @click="saveBtn" :disabled="form.msg==null || form.title==null">Done</button>
+    </div>
+  </div>
+  <div id="modal-qr" class="absolute p-5">
+    <div class="qr-box bg-red-500">
+      <div id="qrcode" class=""></div>
+      <p class="text-center my-5 italic">
+        Screenshot this QRCode and send to whoever you want
+      </p>
+      <div class="flex justify-evenly">
+        <router-link :to="getLinkPreview()" class="bg-yellow-500 rounded px-3 py-1 text-white">View</router-link>
+        <button class="bg-yellow-500 rounded px-3 py-1 text-white" @click="redirectHome()">Back</button>
+      </div>
+    </div>
+  </div>
+  <CopyVersion />
 </template>
 <style>
   #modal-qr{

@@ -1,5 +1,9 @@
 <script>
+import CopyVersion from '@/components/CopyVersion.vue'
 export default {
+  components: {
+    CopyVersion,
+  },
   data() {
     return {
       title: null,
@@ -43,6 +47,7 @@ export default {
         </div>
       </div>
     </div>
+    <CopyVersion />
   </div>
 
 </template>
