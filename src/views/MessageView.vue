@@ -1,5 +1,9 @@
 <script>
+import CopyVersion from '@/components/CopyVersion.vue'
 export default {
+  components: {
+    CopyVersion,
+  },
   data() {
     return {
       title: null,
@@ -43,6 +47,7 @@ export default {
         </div>
       </div>
     </div>
+    <CopyVersion />
   </div>
 
 </template>
@@ -155,20 +160,20 @@ export default {
   @keyframes paperOpen {
     0% {
       margin-top: 0px;
-      min-height: 180px;
+      min-height: 195px;
     }
     50% {
       margin-top: -250px;
-      min-height: 195px;
+      min-height: 200px;
       box-shadow: 0 0 5px 1px rgba(158, 158, 158, 0.5);
     }
     75% {
-      min-height: 200px;
+      min-height: 215px;
       box-shadow: 0 0 7px 1px rgba(158, 158, 158, 0.5);
       z-index: 30;
     }
     100% {
-      min-height: 205px;
+      min-height: 220px;
       margin-top: -75px;
       z-index: 30;
       box-shadow: 0 0 10px 1px rgba(158, 158, 158, 0.5);
