@@ -12,7 +12,6 @@ export default {
         msg: null,
         background: '#d7b719',
       }),
-      counter: 0,
     }
   },
   mounted() {
@@ -52,18 +51,12 @@ export default {
     redirectHome(){
       document.getElementById("modal-qr").style.visibility = 'hidden'
     },
-      counterMsg(){
-        return this.counter
-      }
 
   },
   watch: {
     'form.background': function (newVal) {
       this.backgroundColor(newVal)
     },
-    'form.msg': function (newVal){
-      this.counter = newVal.length
-    }
   },
 }
 </script>
@@ -83,15 +76,11 @@ export default {
                 <hr>
               </div>
               <p class="text-md text-gray-700 pb-6 pt-4">
-                <textarea name="text" wrap="soft" rows="6"
+                <textarea name="text" wrap="soft" rows="5"
                   class="w-full focus:outline-none h-" 
                   placeholder="e.g. Hi my friend.. we've lot time together, i now i decide to gift some words just for you..."
                   v-model="form.msg" maxlength="250"></textarea>
               </p>
-              <div class="text-gray-600 mb-2 text-end">
-                {{ counterMsg() }}
-                <span>/ 250</span>
-              </div>
             </div>
           </div>
           <div class="flex justify-end">
