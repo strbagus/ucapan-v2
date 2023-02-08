@@ -2,3 +2,9 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+.text-xs {
+  font-size: 0.7rem;
+}
+.text-xxs {
+  font-size: 0.6rem;
+}
