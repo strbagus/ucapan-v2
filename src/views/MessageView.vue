@@ -8,17 +8,23 @@ export default {
     return {
       title: null,
       msg: null,
+      bg: null,
+      isPreview: false,
     }
   },
   mounted() {
     const queryString = window.location.search;
     const urlParams = new URLSearchParams(queryString);
-    let title = urlParams.get('title')
-    let message = urlParams.get('msg')
-    let bg = urlParams.get('bg')
-    this.title = title
-    this.msg = message
-    document.body.style.background = '#'+bg
+    this.bg = urlParams.get('bg')
+    this.title = urlParams.get('title')
+    this.msg = urlParams.get('msg')
+    this.isPreview = urlParams.get('preview')
+    document.body.style.background = '#'+this.bg
+  },
+  computed: {
+    backToWrite(){
+      return '/?title='+this.title+'&msg='+this.msg+'&bg='+this.bg
+    }
   },
   methods: {
     openEnvelope(){
@@ -47,11 +53,20 @@ export default {
         </div>
       </div>
     </div>
+    <div v-if="this.isPreview=='true'" class="mid absolute bottom-10">
+      <div class="bg-yellow-500 rounded-lg px-3 py-1 text-white hover:bg-yellow-600 focus:bg-yellow-600 duration-300">
+        <RouterLink :to="backToWrite">Back</RouterLink>
+      </div>
+    </div>
     <CopyVersion />
   </div>
 
 </template>
 <style>
+  .mid {
+    left: 50%;
+    transform: translateX(-50%);
+  }
   .container {
     position:relative;
     min-height:100vh;

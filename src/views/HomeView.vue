@@ -20,6 +20,16 @@ export default {
   mounted() {
     document.getElementById("preview").style.background = this.form.background
     document.body.style.background = '#000'
+
+    const queryString = window.location.search;
+    const urlParams = new URLSearchParams(queryString);
+    if(urlParams.get('title') !== null){
+      this.form.background = '#'+urlParams.get('bg')
+      this.form.title = urlParams.get('title')
+      this.form.msg = urlParams.get('msg')
+    }else{
+      console.log('fresh')
+    }
   },
   methods: {
     saveBtn() {
@@ -46,7 +56,7 @@ export default {
       let msg = this.form.msg
       let bgRaw = this.form.background
       let bg = bgRaw.replace('#', '')
-      return '/message?title='+title+'&msg='+msg+'&bg='+bg
+      return '/message?title='+title+'&msg='+msg+'&bg='+bg+'&preview=true'
     },
     backgroundColor(value){
     document.getElementById("preview").style.background = value
@@ -70,11 +80,11 @@ export default {
 }
 </script>
 <template>
-  <div class="form absolute px-5">
+  <div class="form px-5 absolute max-w-4xl">
     <h1 class="text-2xl text-yellow-500 mt-7">Preview</h1>
     <div id="preview" class="m-1 px-5 py-7 rounded">
       <div class="flex justify-center">
-        <div class="message rounded shadow-md pt-3 w-full md:w-1/3 px-5 bg-white">
+        <div class="message rounded shadow-md pt-3 w-full md:max-w-md px-5 bg-white">
           <div>
             <input type="text" 
               class="text-xl text-gray-700 w-full focus:outline-none" 
@@ -99,8 +109,9 @@ export default {
       </div>
     </div>
     <div class="flex justify-center my-3 mx-5">
-      <button class="bg-yellow-500 rounded px-3 py-1 text-white disabled:bg-yellow-600 disabled:text-gray-500" @click="saveBtn" :disabled="form.msg==null || form.title==null">Done</button>
+      <button class="bg-yellow-500 rounded px-3 py-1 text-white hover:bg-yellow-600 duration-300 disabled:bg-yellow-600 disabled:text-gray-500" @click="saveBtn" :disabled="form.msg==null || form.title==null">Done</button>
     </div>
+    <CopyVersion />
   </div>
   <div id="modal-qr" class="absolute p-5">
     <div class="qr-box bg-red-500">
@@ -109,12 +120,11 @@ export default {
         Screenshot this QRCode and send to whoever you want
       </p>
       <div class="flex justify-evenly">
-        <router-link :to="getLinkPreview()" class="bg-yellow-500 rounded px-3 py-1 text-white">View</router-link>
+        <router-link :to="getLinkPreview()" class="bg-yellow-500 rounded px-3 py-1 text-white">Preview</router-link>
         <button class="bg-yellow-500 rounded px-3 py-1 text-white" @click="redirectHome()">Back</button>
       </div>
     </div>
   </div>
-  <CopyVersion />
 </template>
 <style>
   #modal-qr{
@@ -127,6 +137,8 @@ export default {
   .form{
     width: 100%;
     min-height: 100vh;
+    left: 50%;
+    transform: translateX(-50%);
   }
   .qr-box{
     position: relative;
