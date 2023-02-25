@@ -9,6 +9,8 @@ export default {
       title: null,
       msg: null,
       bg: null,
+      song: null,
+      img: null,
       isPreview: false,
     }
   },
@@ -19,11 +21,24 @@ export default {
     this.title = urlParams.get('title')
     this.msg = urlParams.get('msg')
     this.isPreview = urlParams.get('preview')
-    document.body.style.background = '#'+this.bg
+    urlParams.get('img')!==null ? this.img = urlParams.get('img') : null
+    urlParams.get('song')!==null ? this.song = urlParams.get('song') : null
+    if(this.img==null){
+      document.getElementById('background').style.background = '#'+this.bg
+    } else if(this.img==1){
+      document.getElementById('background').style.backgroundImage = "url('/img/Background1.jpeg')"
+    } else if(this.img==2){
+      document.getElementById('background').style.backgroundImage = "url('/img/Background2.jpg')"
+    }
   },
   computed: {
     backToWrite(){
-      return '/?title='+this.title+'&msg='+this.msg+'&bg='+this.bg
+      if(this.img===null || this.song===null){
+        return '/write?title='+this.title+'&msg='+this.msg+'&bg='+this.bg
+      }else{
+        return '/secret?title='+this.title+'&msg='+this.msg+'&bg='+this.bg+'&img='+this.img+'&song='+this.song
+      }
+      
     }
   },
   methods: {
@@ -31,11 +46,13 @@ export default {
       document.querySelector('.envelope').style.webkitAnimationPlayState = 'running'
       document.querySelector('.paper').style.webkitAnimationPlayState = 'running'
       document.querySelector('.top').style.webkitAnimationPlayState = 'running'
+      document.querySelector('audio').play()
     }
   },
 }
 </script>
 <template>
+<div class="w-full h-full" id="background">
   <div class="container mx-auto">
     <div class="contact">
       <div class="envelope" id="envelope" @click="openEnvelope()">
@@ -53,6 +70,8 @@ export default {
         </div>
       </div>
     </div>
+    <audio v-if="this.song==1" id="audio" src="/song/kau-rumahku.mp3"></audio>
+    <audio v-if="this.song==2" id="audio" src="/song/serta-mulia.mp3"></audio>
     <div v-if="this.isPreview=='true'" class="mid absolute bottom-10">
       <div class="bg-yellow-500 rounded-lg px-3 py-1 text-white hover:bg-yellow-600 focus:bg-yellow-600 duration-300">
         <RouterLink :to="backToWrite">Back</RouterLink>
@@ -60,7 +79,7 @@ export default {
     </div>
     <CopyVersion />
   </div>
-
+</div>
 </template>
 <style>
   .mid {
