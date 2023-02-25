@@ -65,7 +65,7 @@ export default {
         <div class="paper px-5 py-7">
           <h1 class="text-2xl text-gray-800">{{ title }}</h1>
           <hr>
-          <p class="message text-md text-gray-700 pt-5 pb-10">{{ msg }}</p>
+          <p class="message text-md text-gray-700 pt-2 pb-10">{{ msg }}</p>
 
         </div>
       </div>
@@ -188,7 +188,7 @@ export default {
   }
   .contact .envelope .paper {
       position: absolute;
-      height: 100px;
+      height: 150px;
       padding-top: 10px;
       top: 5px;
       width: 95%;
@@ -203,18 +203,22 @@ export default {
       margin-top: 0px;
       min-height: 195px;
     }
+    30% {
+      min-height: 225px;
+    }
     50% {
       margin-top: -250px;
-      min-height: 200px;
+      min-height: 235px;
       box-shadow: 0 0 5px 1px rgba(158, 158, 158, 0.5);
+      z-index: 10;
     }
     75% {
-      min-height: 215px;
+      min-height: 235px;
       box-shadow: 0 0 7px 1px rgba(158, 158, 158, 0.5);
       z-index: 30;
     }
     100% {
-      min-height: 220px;
+      min-height: 235px;
       margin-top: -75px;
       z-index: 30;
       box-shadow: 0 0 10px 1px rgba(158, 158, 158, 0.5);
