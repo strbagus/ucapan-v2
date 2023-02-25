@@ -63,9 +63,9 @@ export default {
         <div class="right"></div>
         <div class="cover"></div>
         <div class="paper px-5 py-7">
-          <h1 class="text-2xl text-gray-800">{{ title }}</h1>
+          <h1 class="text-2xl font-light italic text-gray-800">{{ title }}</h1>
           <hr>
-          <p class="message text-md text-gray-700 pt-2 pb-10">{{ msg }}</p>
+          <p class="message text-md font-normal italic text-gray-600 pt-3 pb-10">{{ msg }}</p>
 
         </div>
       </div>
