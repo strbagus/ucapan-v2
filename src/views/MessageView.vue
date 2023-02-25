@@ -76,8 +76,10 @@ export default {
       <div class="bg-yellow-500 rounded-lg px-3 py-1 text-white hover:bg-yellow-600 focus:bg-yellow-600 duration-300">
         <RouterLink :to="backToWrite">Back</RouterLink>
       </div>
-    </div>
-    <CopyVersion />
+    </div>  
+    <footer v-if="this.song===null && this.img===null" class="mx-2 bottom-1 absolute right-10 opacity-50">
+      <CopyVersion />
+    </footer>
   </div>
 </div>
 </template>

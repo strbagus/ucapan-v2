@@ -135,7 +135,9 @@ export default {
     <div class="flex justify-center my-3 mx-5">
       <button class="bg-yellow-500 rounded px-3 py-1 text-white hover:bg-yellow-600 duration-300 disabled:bg-yellow-600 disabled:text-gray-500" @click="saveBtn" :disabled="form.msg==null || form.title==null">Done</button>
     </div>
-    <CopyVersion />
+    <footer class="mx-2 bottom-1 absolute right-10 opacity-30">
+      <CopyVersion />
+    </footer>
   </div>
   <div id="modal-qr" class="absolute p-5">
     <div class="qr-box bg-red-500">
