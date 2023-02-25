@@ -84,6 +84,11 @@ export default {
 </div>
 </template>
 <style>
+  #background {
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
+  }
   .mid {
     left: 50%;
     transform: translateX(-50%);
