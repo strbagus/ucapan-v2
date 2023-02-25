@@ -13,6 +13,8 @@ export default {
         title: null,
         msg: null,
         background: '#d7b719',
+        img: null,
+        song: null,
       }),
       counter: 0,
     }
@@ -27,6 +29,8 @@ export default {
       this.form.background = '#'+urlParams.get('bg')
       this.form.title = urlParams.get('title')
       this.form.msg = urlParams.get('msg')
+      this.form.img = urlParams.get('img')
+      this.form.song = urlParams.get('song')
     }else{
       console.log('fresh')
     }
@@ -46,17 +50,21 @@ export default {
       let titleRaw = this.form.title
       let msgRaw = this.form.msg
       let bgRaw = this.form.background
+      let img = this.form.img
+      let song = this.form.song
       let bg = bgRaw.replace('#', '')
       let title = encodeURI(titleRaw)
       let msg = encodeURI(msgRaw)
-      return import.meta.env.VITE_BASE_URL+'message?title='+title+'&msg='+msg+'&bg='+bg
+      return import.meta.env.VITE_BASE_URL+'message?title='+title+'&msg='+msg+'&bg='+bg+'&img='+img+'&song='+song
     },
     getLinkPreview() {
       let title = this.form.title
       let msg = this.form.msg
       let bgRaw = this.form.background
+      let img = this.form.img
+      let song = this.form.song
       let bg = bgRaw.replace('#', '')
-      return '/message?title='+title+'&msg='+msg+'&bg='+bg+'&preview=true'
+      return '/message?title='+title+'&msg='+msg+'&bg='+bg+'&img='+img+'&song='+song+'&preview=true'
     },
     backgroundColor(value){
     document.getElementById("preview").style.background = value
@@ -105,7 +113,23 @@ export default {
         </div>
       </div>
       <div class="flex justify-end">
-        <input type="color" class="form-input text-gray-700 rounded m-1" v-model="form.background" />
+        <input v-if="form.img===null" type="color" class="form-input text-gray-700 rounded m-1" v-model="form.background" />
+      </div>
+    </div>
+    <div class="flex justify-between">
+      <div class="px-5">
+        <label>Pilih Img : &nbsp;</label>
+        <select v-model="form.img" class="text-black">
+          <option value="1">Gambar 1</option>
+          <option value="2">Gambar 2</option>
+        </select>
+      </div>
+      <div class="px-5">
+        <label>Pilih Lagu : &nbsp;</label>
+        <select v-model="form.song" class="text-black">
+          <option value="1">Kau Rumahku</option>
+          <option value="2">Serta Mulia</option>
+        </select>
       </div>
     </div>
     <div class="flex justify-center my-3 mx-5">

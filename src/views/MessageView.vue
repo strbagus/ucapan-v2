@@ -8,28 +8,51 @@ export default {
     return {
       title: null,
       msg: null,
+      bg: null,
+      song: null,
+      img: null,
+      isPreview: false,
     }
   },
   mounted() {
     const queryString = window.location.search;
     const urlParams = new URLSearchParams(queryString);
-    let title = urlParams.get('title')
-    let message = urlParams.get('msg')
-    let bg = urlParams.get('bg')
-    this.title = title
-    this.msg = message
-    document.body.style.background = '#'+bg
+    this.bg = urlParams.get('bg')
+    this.title = urlParams.get('title')
+    this.msg = urlParams.get('msg')
+    this.isPreview = urlParams.get('preview')
+    urlParams.get('img')!==null ? this.img = urlParams.get('img') : null
+    urlParams.get('song')!==null ? this.song = urlParams.get('song') : null
+    if(this.img==null){
+      document.getElementById('background').style.background = '#'+this.bg
+    } else if(this.img==1){
+      document.getElementById('background').style.backgroundImage = "url('/img/Background1.jpeg')"
+    } else if(this.img==2){
+      document.getElementById('background').style.backgroundImage = "url('/img/Background2.jpg')"
+    }
+  },
+  computed: {
+    backToWrite(){
+      if(this.img===null || this.song===null){
+        return '/write?title='+this.title+'&msg='+this.msg+'&bg='+this.bg
+      }else{
+        return '/secret?title='+this.title+'&msg='+this.msg+'&bg='+this.bg+'&img='+this.img+'&song='+this.song
+      }
+      
+    }
   },
   methods: {
     openEnvelope(){
       document.querySelector('.envelope').style.webkitAnimationPlayState = 'running'
       document.querySelector('.paper').style.webkitAnimationPlayState = 'running'
       document.querySelector('.top').style.webkitAnimationPlayState = 'running'
+      document.querySelector('audio').play()
     }
   },
 }
 </script>
 <template>
+<div class="w-full h-full" id="background">
   <div class="container mx-auto">
     <div class="contact">
       <div class="envelope" id="envelope" @click="openEnvelope()">
@@ -47,11 +70,24 @@ export default {
         </div>
       </div>
     </div>
-    <CopyVersion />
+    <audio v-if="this.song==1" id="audio" src="/song/kau-rumahku.mp3"></audio>
+    <audio v-if="this.song==2" id="audio" src="/song/serta-mulia.mp3"></audio>
+    <div v-if="this.isPreview=='true'" class="mid absolute bottom-10">
+      <div class="bg-yellow-500 rounded-lg px-3 py-1 text-white hover:bg-yellow-600 focus:bg-yellow-600 duration-300">
+        <RouterLink :to="backToWrite">Back</RouterLink>
+      </div>
+    </div>  
+    <footer v-if="this.song===null && this.img===null" class="mx-2 bottom-1 absolute right-10 opacity-50">
+      <CopyVersion />
+    </footer>
   </div>
-
+</div>
 </template>
 <style>
+  .mid {
+    left: 50%;
+    transform: translateX(-50%);
+  }
   .container {
     position:relative;
     min-height:100vh;
