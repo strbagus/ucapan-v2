@@ -25,10 +25,8 @@ export default {
     urlParams.get('song')!==null ? this.song = urlParams.get('song') : null
     if(this.img==null){
       document.getElementById('background').style.background = '#'+this.bg
-    } else if(this.img==1){
-      document.getElementById('background').style.backgroundImage = "url('/img/Background1.jpeg')"
-    } else if(this.img==2){
-      document.getElementById('background').style.backgroundImage = "url('/img/Background2.jpg')"
+    } else {
+      document.getElementById('background').style.backgroundImage = `url('/img/Background${this.img}.jpg')`
     }
   },
   computed: {
@@ -72,6 +70,7 @@ export default {
     </div>
     <audio v-if="this.song==1" id="audio" src="/song/kau-rumahku.mp3"></audio>
     <audio v-if="this.song==2" id="audio" src="/song/serta-mulia.mp3"></audio>
+    <audio v-if="this.song==3" id="audio" src="/song/never-mine.mp3"></audio>
     <div v-if="this.isPreview=='true'" class="mid absolute bottom-10">
       <div class="bg-yellow-500 rounded-lg px-3 py-1 text-white hover:bg-yellow-600 focus:bg-yellow-600 duration-300">
         <RouterLink :to="backToWrite">Back</RouterLink>

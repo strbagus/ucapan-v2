@@ -118,17 +118,20 @@ export default {
     </div>
     <div class="flex justify-between">
       <div class="px-5">
-        <label>Pilih Img : &nbsp;</label>
+        <label>Image : &nbsp;</label>
         <select v-model="form.img" class="text-black">
-          <option value="1">Gambar 1</option>
-          <option value="2">Gambar 2</option>
+          <option value="1">Image 1</option>
+          <option value="2">Image 2</option>
+          <option value="3">Image 3</option>
         </select>
       </div>
       <div class="px-5">
-        <label>Pilih Lagu : &nbsp;</label>
+        <label>Song : &nbsp;</label>
         <select v-model="form.song" class="text-black">
+          <option selected disabled>Songs</option>
           <option value="1">Kau Rumahku</option>
           <option value="2">Serta Mulia</option>
+          <option value="3">Never Mine</option>
         </select>
       </div>
     </div>
