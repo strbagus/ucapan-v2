@@ -12,14 +12,14 @@ onMounted(() => {
   const urlParams = new URLSearchParams(queryString);
   bo.value = urlParams.get('bo')
   bt.value = urlParams.get('bt')
-  msg.value = urlParams.get('msg')
+  msg.value = atob(urlParams.get('msg'))
   isPreview.value = urlParams.get('preview')
 
   document.body.style.background = `linear-gradient(45deg, #${bo.value} 0%, #${bt.value} 100%)`;
 });
 
 const backToWrite = computed(() => {
-  return `/write?bo=${bo.value}&bt=${bt.value}&msg=${msg.value}`
+  return `/write?bo=${bo.value}&bt=${bt.value}&msg=${btoa(msg.value)}`
 });
 
 const openEnvelope = (ani = 'running') => {

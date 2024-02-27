@@ -16,7 +16,7 @@ onMounted(() => {
   const queryString = window.location.search;
   const urlParams = new URLSearchParams(queryString);
   if (urlParams.get('msg') !== null) {
-    form.msg = urlParams.get('msg')
+    form.msg = atob(urlParams.get('msg'))
     background.one = '#'+urlParams.get('bo')
     background.two = '#'+urlParams.get('bt')
   }
@@ -45,7 +45,7 @@ watch(background, (newVal) => {
 const fullLink = (preview = false) => {
   let base = !preview ? import.meta.env.VITE_BASE_URL : ''
   let prv = preview ? '&preview=true' : ''
-  return encodeURI(`${base}/message?bo=${background.one.replace('#','')}&bt=${background.two.replace('#','')}&msg=${form.msg}${prv}`)
+  return encodeURI(`${base}/message?bo=${background.one.replace('#','')}&bt=${background.two.replace('#','')}&msg=${btoa(form.msg)}${prv}`)
 };
 
 const textCounter = computed(() => {
@@ -103,7 +103,7 @@ const downloadQR = () => {
         <router-link :to="fullLink(true)"
           class="bg-yellow-500 hover:bg-yellow-600 rounded px-3 py-1 text-white">Preview</router-link>
         <button class="bg-yellow-500 hover:bg-yellow-600 rounded px-3 py-1 text-white" @click="isQr = !isQr">Back</button>
-        <button class="bg-yellow-500 hover:bg-yellow-600 rounded px-3 py-1 text-white" @click="downloadQR">Download QR</button>
+        <button class="bg-neutral-500 hover:bg-neutral-600 rounded px-3 py-1 text-white" @click="downloadQR">Download QR</button>
       </div>
     </div>
   </div>
