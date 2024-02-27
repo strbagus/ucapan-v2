@@ -13,7 +13,7 @@ export default {
             <div class="text-sm text-white text-justify">
                 Say Hi to your whoever that is with this letter in envelope.
                 <br>
-                You just Write, Screenshot QR, Send. That person will Scan QR, Click the envelope and the letter will pop.
+                You just Write, Download QR, Send. That person will Scan QR, Click the envelope and the letter will pop.
             </div>
             <a href="/write">
                 <div class="bg-sky-500 hover:bg-sky-600 shadow text-white duration-400 px-5 relative py-1 rounded-lg my-3 inline-block float-right md:float-left">Write Now!</div>
