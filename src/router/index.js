@@ -1,8 +1,4 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import HomeView from '../views/HomeView.vue'
-import MessageView from '../views/MessageView.vue'
-import SecretView from '../views/SecretView.vue'
-import LandingPage from '../views/LandingPage.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -10,23 +6,17 @@ const router = createRouter({
     {
       path: '/',
       name: 'home',
-      component: LandingPage
+      component: () => import('@/views/LandingPage.vue')
     },
     {
       path: '/write',
       name: 'write',
-      component: HomeView
-    },
-    {
-      path: '/secret',
-      name: 'secret',
-      component: SecretView
-
+      component: () => import('@/views/HomeView.vue')
     },
     {
       path: '/message',
       name: 'message',
-      component: MessageView
+      component: () => import('@/views/MessageView.vue')
     }
   ]
 })
