@@ -1,5 +1,5 @@
 <script setup>
-import { ref, onMounted, computed } from 'vue';
+import { ref, onMounted, computed, onBeforeUnmount } from 'vue';
 import CopyVersion from '@/components/CopyVersion.vue';
 
 const msg = ref('');
@@ -22,12 +22,15 @@ const backToWrite = computed(() => {
   return `/write?bo=${bo.value}&bt=${bt.value}&msg=${msg.value}`
 });
 
-const openEnvelope = () => {
-  document.querySelector('.envelope').style.webkitAnimationPlayState = 'running'
-  document.querySelector('.paper').style.webkitAnimationPlayState = 'running'
-  document.querySelector('.top').style.webkitAnimationPlayState = 'running'
+const openEnvelope = (ani = 'running') => {
+  document.querySelector('.envelope').style.webkitAnimationPlayState = ani 
+  document.querySelector('.paper').style.webkitAnimationPlayState = ani 
+  document.querySelector('.top').style.webkitAnimationPlayState = ani
 };
 
+onBeforeUnmount(() => {
+  openEnvelope('paused')
+})
 </script>
 <template>
   <div class="w-full h-full" id="background">
