@@ -8,6 +8,7 @@
     "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs --fix --ignore-path .gitignore"
   },
   "dependencies": {
+    "@vercel/analytics": "^1.2.2",
     "file-saver": "^2.0.5",
     "qrcode-svg": "^1.1.0",
     "vue": "^3.2.38",
